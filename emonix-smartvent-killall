@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
+  exit
+fi
+
+echo "Killing all processes associated with emonix-smartvent"
+ps aux | grep emonix-smartvent | grep -v grep | awk '{print $2}' | xargs --verbose -I pid kill pid
+echo "...done"

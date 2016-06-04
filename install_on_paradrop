@@ -1,0 +1,1 @@
+snappy-remote --url=ssh://paradrop install emonix-smartvent_1_amd64.snap

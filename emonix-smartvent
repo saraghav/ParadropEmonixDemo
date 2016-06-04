@@ -1,0 +1,45 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
+  exit
+fi
+
+BINDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# remove/archive the existing directory
+if [ -d "/home/ubuntu/smartvent.old" ]; then
+  rm -rf "/home/ubuntu/smartvent.old"
+fi
+if [ -d "/home/ubuntu/smartvent" ]; then
+  mv "/home/ubuntu/smartvent" "/home/ubuntu/smartvent.old"
+fi
+
+# run all the required components in the background
+
+echo "starting simple vpn in background"
+echo "$BINDIR/srv"
+nohup $BINDIR/srv &
+sleep 2
+echo "$BINDIR/cli -s 127.0.0.1 -a 10.0.0.1"
+nohup $BINDIR/cli -s 127.0.0.1 -a 10.0.0.1 &
+sleep 2
+echo "...done"
+
+echo "starting time server for smart vent in background"
+echo "$BINDIR/time.pl -p 3000"
+nohup $BINDIR/time.pl -p 3000 &
+sleep 2
+echo "...done"
+
+echo "starting data listener for smart vent in background"
+echo "$BINDIR/listener.pl -p 8000"
+nohup $BINDIR/listener.pl -p 8000 &
+sleep 2
+echo "...done"
+
+echo "starting controller script for smart vent in background"
+echo "$BINDIR/control_vent.pl"
+nohup $BINDIR/control_vent.pl &
+sleep 2
+echo "...done"

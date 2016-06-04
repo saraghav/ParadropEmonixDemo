@@ -1,0 +1,29 @@
+name: emonix-smartvent # the name of the snap
+version: 1 # the version of the snap
+# The vendor for the snap (replace 'Vendor <email@example.com>')
+vendor: Ananth Sridhar <ananth.sridhar@wisc.edu>
+summary: A Snappy package for interfacing with the Emonix SmartVent system # 79 char long summary
+description: A Snappy package comprising of an alternative simplevpn and a listener for packets from the SmartVent embedded devices # A longer description for the snap
+icon: icon.jpg # A path to an icon for the package
+
+apps:
+  emonix-smartvent:
+    command: bin/emonix-smartvent
+    daemon: forking
+
+parts:
+  simplevpn:
+    plugin: make
+    source: ./simplevpn/
+  listener:
+    plugin: copy
+    files:
+      ./controller/listener.pl: bin/listener.pl
+      ./controller/time.pl: bin/time.pl
+      ./controller/setvent.sh: bin/setvent.sh
+      ./controller/control_vent.pl: bin/control_vent.pl
+  glue:
+    plugin: copy
+    files:
+      emonix-smartvent: bin/emonix-smartvent
+      emonix-smartvent-killall: bin/emonix-smartvent-killall
