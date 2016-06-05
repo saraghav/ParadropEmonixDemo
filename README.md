@@ -2,28 +2,29 @@
 Snappy Package for Emonix SmartVent Demo on Paradrop
 
 # Instructions
-- Step 1: Creating the Snappy Package
+- **Step 1:** Creating the Snappy Package
 
 shell> snapcraft
 
 will create the snappy package.
 
-- Step 2: Installing on Paradrop
+- **Step 2:** Installing on Paradrop
 
 shell> ./install\_on\_paradrop
 
 will install the package on the paradrop router, assuming that the ssh alias for the router is "paradrop"
 
-- Step 3: Configuring Settings
+- **Step 3:** Configuring Settings
 
 To adjust the temperature threshold (for the vent to decide to open/close), the value of the "$temperature\_threshold" variable should be adjusted in the file control\_vent.pl. This change can be made in the development machine, recompiled as a new snappy package and reinstalled on the router, OR, can directly be changed on the router using vim-tiny.
 
 In both cases, the vent processes should be restarted by first running
 
 shell> sudo "install dir"/emonix-smartvent-killall
+
 shell> sudo "install dir"/emonix-smartvent
 
-- Step 4: Setting up the vent
+- **Step 4:** Setting up the vent
 
 Hardware Setup:
 
@@ -42,7 +43,7 @@ Software Setup:
 
 The sensor node should associate with the AP and start logging data on the paradrop router
 
-- Step 5: Verifying
+- **Step 5:** Verifying
 
 The data logging happens ~ once / minute. A quick way to check if everything went fine is to see if, on the paradrop router/
 
