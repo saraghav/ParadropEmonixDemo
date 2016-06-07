@@ -24,8 +24,8 @@ my $timestamp_value_index = 0; # index of the timestamp value in the file
 my $last_action = 0; # last action taken on the vent
 my @temperature_log = (); # log of the temperature values
 my @timestamp_log = (); # log of the timestamp values
-my $log_size = 5; # how many values to retain in memory for processing
-my $temperature_threshold = 20; # temperature threshold in C for vent state transition
+my $log_size = 2; # how many values to retain in memory for processing
+my $temperature_threshold = 25; # temperature threshold in C for vent state transition
 
 print "waiting for data file to be created\n";
 while (!-e $datafile) {
