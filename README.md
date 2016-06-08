@@ -32,7 +32,7 @@ The connections should be as illustrated in the pictures from this album: https:
 
 Software Setup:
 
-  - Holding the RESET button on the sensor board during and after powerup (for about 5-10 seconds) will erase the programmed network settings on the sensor board and put it in Access Point mode.
+  - Holding the RESET button on the sensor board **after** powerup (for about 5-10 seconds) will erase the programmed network settings on the sensor board and put it in Access Point mode.
   - The Access Point name will be "xbee...". It will be an open connection.
   - Connect to the AP using the development computer and open the address: 192.168.1.10:9750 on a browser
   - Type in the correct network parameters, as illustrated in this image: https://goo.gl/photos/HfQDvbgYPYHrXLTQ7
